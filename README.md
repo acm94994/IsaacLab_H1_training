@@ -133,3 +133,22 @@ Some examples of packages that can likely be excluded are:
 "<path-to-isaac-sim>/extscache/omni.services.*"     // Services tools
 ...
 ```
+
+
+
+
+
+
+
+## Now How to run this environment
+
+- Follow above instructions.
+- run:
+    ```bash
+python scripts/skrl/train.py --task Isaac-H1-Try1-v0 #--headless if u want it to be less intensive.
+    ```
+- You can also modify num_envs and timesteps in max_iterations as you wish (1 iteration - 32 timesteps)
+
+- Follow similar steps to play and video record if possible.
+
+- I have added a sample output and log video to showcase training for 5 iterations of a H1 robot in a flat environment.

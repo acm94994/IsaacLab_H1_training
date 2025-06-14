@@ -15,7 +15,7 @@ from isaaclab.sim import SimulationCfg
 from isaaclab.terrains import TerrainImporterCfg
 from isaaclab.utils import configclass
 
-from isaaclab_tasks.direct.locomotion.locomotion_env import LocomotionEnv
+from isaaclab_tasks.direct.locomotion.stan_locomotion_env import LocomotionEnv
 
 
 @configclass
@@ -23,7 +23,7 @@ class H1EnvCfg(DirectRLEnvCfg):
     # env
     episode_length_s = 15.0
     decimation = 2
-    action_scale = 0.750
+    action_scale = 1.0
     action_space = 19
     observation_space = 69
     state_space = 0
@@ -50,44 +50,40 @@ class H1EnvCfg(DirectRLEnvCfg):
     # robot
     robot: ArticulationCfg = H1_CFG.replace(prim_path="/World/envs/env_.*/Robot")
     joint_gears: list = [
-        100.0,  # left_hip_yaw
-        100.0,  # right_hip_yaw
-        100.0,   # torso
-        120.0,  # left_hip_roll
-        120.0,  # right_hip_roll
-        75.0,   # left_shoulder_pitch
-        75.0,   # right_shoulder_pitch
-        100.0,  # left_hip_pitch
-        100.0,  # right_hip_pitch
-        75.0,   # left_shoulder_roll
-        75.0,   # right_shoulder_roll
-        90.0,   # left_knee
-        90.0,   # right_knee
-        75.0,   # left_shoulder_yaw
-        75.0,   # right_shoulder_yaw
-        90.0,   # left_ankle
-        90.0,   # right_ankle
-        50.0,   # left_elbow
-        50.0,   # right_elbow
+        50.0,  # left_hip_yaw
+        50.0,  # right_hip_yaw
+        50.0,  # torso
+        50.0,  # left_hip_roll
+        50.0,  # right_hip_roll
+        50.0,  # left_shoulder_pitch
+        50.0,  # right_shoulder_pitch
+        50.0,  # left_hip_pitch
+        50.0,  # right_hip_pitch
+        50.0,  # left_shoulder_roll
+        50.0,  # right_shoulder_roll
+        50.0,  # left_knee
+        50.0,  # right_knee
+        50.0,  # left_shoulder_yaw
+        50.0,  # right_shoulder_yaw
+        50.0,  # left_ankle
+        50.0,  # right_ankle
+        50.0,  # left_elbow
+        50.0,  # right_elbow
     ]
 
-    heading_weight: float = 2.5
-    up_weight: float = 0.5
+    heading_weight: float = 0.5
+    up_weight: float = 0.1
 
-    energy_cost_scale: float = 0.08
-    actions_cost_scale: float = 0.05
-    alive_reward_scale: float = 5.0
-    dof_vel_scale: float = 2.5
+    energy_cost_scale: float = 0.05
+    actions_cost_scale: float = 0.01
+    alive_reward_scale: float = 2.0
+    dof_vel_scale: float = 0.1
 
-    death_cost: float = -2.0
-    termination_height: float = 1.0
+    death_cost: float = -1.0
+    termination_height: float = 0.8
 
-    angular_velocity_scale: float = 1.0
-    contact_force_scale: float = 0.5
-    smoothness_scale: float = 0.1
-    limping_scale: float = 0.2
-    alternating_scale: float = 3.0
-    arm_movement_scale: float = 0.75
+    angular_velocity_scale: float = 0.25
+    contact_force_scale: float = 0.01
 
 
 class H1Env(LocomotionEnv):
